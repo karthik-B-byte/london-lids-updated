@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>London Lids Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .logo-center {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .logo-center img {
+      height: 80px;
+    }
+    .title-center {
+      text-align: center;
+      color: #e4a342;
+      margin: 20px 0 10px 0;
+    }
+    #searchBar {
+      display: block;
+      margin: 0 auto 30px auto;
+      padding: 10px;
+      font-size: 16px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .link-list {
+      max-width: 500px;
+      margin: auto;
+    }
+    .link-list a {
+      display: block;
+      color: white;
+      margin: 10px 0;
+      text-align: center;
+      text-decoration: none;
+    }
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-center">
+    <img src="logo.png" alt="London Lids Logo" />
+  </div>
+  <h1 class="title-center">Explore Our Product Categories</h1>
+  <input type="text" id="searchBar" onkeyup="searchCategories()" placeholder="Search categories..." />
+
+  <div class="link-list" id="categoryLinks">
+    <a href="aluminium.html">Aluminium Foil Containers</a>
+    <a href="plastic.html">Plastic Containers</a>
+    <a href="bagasse.html">Bagasse Products</a>
+  </div>
+
+  <script>
+    function searchCategories() {
+      const input = document.getElementById('searchBar').value.toLowerCase();
+      const links = document.querySelectorAll('#categoryLinks a');
+      links.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        link.style.display = text.includes(input) ? 'block' : 'none';
+      });
+    }
+  </script>
+
+  <footer>
+    &copy; 2025 London Lids Limited. All rights reserved.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - London Lids Ltd</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: #162029;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Header styling */
+    header {
+      background-color: #0e141a;
+      padding: 20px 0;
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+
+    header .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e4a342;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #e4a342;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    /* Headings */
+    h2 {
+      color: #e4a342;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    /* Paragraphs */
+    p {
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    /* List styling */
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      position: relative;
+      padding-left: 25px;
+      color: #ccc;
+    }
+
+    ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #e4a342;
+      font-weight: bold;
+    }
+
+    /* Button style */
+    a.button {
+      display: inline-block;
+      background-color: #e4a342;
+      color: #162029;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    a.button:hover,
+    a.button:focus {
+      background-color: #c98d2f;
+      outline: none;
+      color: white;
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: #0e141a;
+      text-align: center;
+      padding: 20px;
+      color: #e4a342;
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: #e4a342;
+      font-weight: bold;
+      margin: 0 10px;
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    footer a:hover,
+    footer a:focus {
+      background-color: #c98d2f;
+      color: white;
+      outline: none;
+    }
+
+    footer p {
+      margin: 10px 0 0 0;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="back-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>About London Lids Ltd</h1>
+  </header>
+
+  <!-- Main content -->
+  <main class="container" role="main">
+    <section>
+      <h2>Who We Are</h2>
+      <p>
+        London Lids Ltd is a trusted family-run business with over 20 years of experience in the food packaging industry. Based in London, we specialize in manufacturing and supplying high-quality catering disposables to restaurants, takeaways, food distributors, and event caterers across the UK.
+      </p>
+    </section>
+
+    <section>
+      <h2>Our Mission</h2>
+      <p>
+        We are committed to delivering innovative, hygienic, and eco-conscious packaging solutions that meet the evolving needs of our customers. Our goal is to support your business with reliable products, fast service, and unbeatable value.
+      </p>
+    </section>
+
+    <section>
+      <h2>Why Choose Us?</h2>
+      <ul>
+        <li>Over two decades of industry expertise</li>
+        <li>Wide range of products including aluminium, plastic, bagasse, and paper solutions</li>
+        <li>Competitive pricing and custom bulk orders</li>
+        <li>Friendly, responsive customer support</li>
+      </ul>
+    </section>
+
+    <section>
+      <p>
+        <a class="button" href="Product Catalog Presentation RD.pdf" download aria-label="Download Our Full Product Catalog">
+          📄 Download Our Full Product Catalog
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="index.html" aria-label="Back to Home">← Back to Home</a>
+    <a href="contact.html" aria-label="Contact Us">Contact Us</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

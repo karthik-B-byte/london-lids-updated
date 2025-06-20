@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paper & Plastic Bags</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: white;
+      color: #162029;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: relative;
+      padding: 20px;
+      background-color: #0e141a;
+      text-align: center;
+    }
+
+    header a.back-btn {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      color: #e4a342;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    header h1 {
+      color: #e4a342;
+      margin: 0;
+      font-size: 2em;
+    }
+
+    #global-search-container {
+      margin: 20px auto;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #global-search {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 6px #e4a342;
+      outline: none;
+      color: #162029;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto 40px;
+      padding: 0 15px;
+    }
+
+    h2 {
+      color: #e4a342;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      padding: 16px;
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+
+    .product h3 {
+      text-align: center;
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      padding: 12px 0;
+      margin: 0;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .product h3:hover,
+    .product:hover h3 {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    .product-specs {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: #162029;
+      border-radius: 0 0 10px 10px;
+      padding: 0 12px;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .product-specs ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .product.active .product-specs {
+      max-height: 500px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer a {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    footer a:hover {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body class="product-page">
+
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
+  </div>
+
+  <header>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    <h1>Paper & Plastic Bags</h1>
+  </header>
+
+  <div class="container">
+
+    <h2>Paper Bags</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/paper bag kraft.png" alt="Kraft Paper Bags" />
+        <h3>Kraft Paper Bags</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: Small, Medium, Large</li>
+            <li>Pack Size: 250 pcs</li>
+            <li>Types: Greaseproof, White Sulphate, SOS</li>
+            <li>Available Dimensions: 7x7, 8.5x8.5, 10x10, 12x12, 14x14, 15x15, 16x16, 18x18, 14x18, 18x28</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Plastic SOS Bags</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/plastic bag small.png" alt="Plastic SOS Bags" />
+        <h3>Plastic SOS Bags</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Small: 18×10×22 cm</li>
+            <li>Medium: 21.5×11.5×25.5 cm</li>
+            <li>Large: 28×13×32.5 cm</li>
+            <li>Extra Large: 26×25×30 cm</li>
+            <li>Note: Fits 9x9 containers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Paper Cups</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/paper cups.png" alt="Paper Cups" />
+        <h3>Double-Wall Ripple Paper Cups</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 8oz & 12oz</li>
+            <li>Colors: Black or Brown</li>
+            <li>Pack Sizes:</li>
+            <li>- Cups: 500 per box</li>
+            <li>- Lids (White/Black): 1000 per box</li>
+            <li>Compatible: Sip-through lids sold separately</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Greaseproof Liners</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/greaseproof liners.png" alt="Greaseproof Liners" />
+        <h3>Greaseproof Liners</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Color: White or Brown</li>
+            <li>Various sizes for food wrapping</li>
+            <li>Commonly used for bakery, sandwiches, wraps</li>
+            <li>Pack Size: 1000 pcs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Foil Bags</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/foil bags.png" alt="Foil Bags" />
+        <h3>Foil Bags</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Insulated foil-lined for hot food</li>
+            <li>Sizes: Small, Medium, Large</li>
+            <li>Ideal for kebabs, burgers, etc.</li>
+            <li>Pack Size: 500 or 1000 pcs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html">← Back to Home</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle specs accordion on image or h3 click
+    document.querySelectorAll('.product').forEach(product => {
+      const img = product.querySelector('img');
+      const title = product.querySelector('h3');
+
+      const toggleSpecs = () => {
+        product.classList.toggle('active');
+      };
+
+      img.addEventListener('click', toggleSpecs);
+      title.addEventListener('click', toggleSpecs);
+    });
+  </script>
+
+  <script src="search.js"></script>
+  <script src="productIndex.js"></script>
+</body>
+</html>

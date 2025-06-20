@@ -1,26 +1,339 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Plastic Containers</title>
-<link href="styles.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plastic Containers</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: white;
+      color:#162029;
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+
+    header {
+      position: relative;
+      padding: 20px;
+      background-color: #0e141a;
+      text-align: center;
+    }
+
+    header a.back-btn {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      color: #e4a342;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    header h1 {
+      color: #e4a342;
+      margin: 0;
+      font-size: 2em;
+    }
+
+    #global-search-container {
+      margin: 20px auto;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #global-search {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 0 6px #e4a342;
+      outline: none;
+      color: #162029;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto 40px;
+      padding: 0 15px;
+    }
+
+    h2 {
+      color: #e4a342;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      padding: 16px;
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+
+    .product h3 {
+      text-align: center;
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      padding: 12px 0;
+      margin: 0;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+
+      /* Accessibility */
+      outline: none;
+    }
+
+    .product h3:hover,
+    .product:hover h3 {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    .product h3:focus {
+      box-shadow: 0 0 0 2px #e4a342;
+    }
+
+    .product-specs {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.3s ease;
+      background-color: #162029;
+      border-radius: 0 0 10px 10px;
+      padding: 0 12px;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .product-specs ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .product.active .product-specs {
+      max-height: 500px;
+      opacity: 1;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer a {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    footer a:hover {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
-<body>
-<h1>Plastic Microwave Containers</h1>
-<p>LLL Microwave containers are suitable for hot or cold food, for freezing, reusing, and microwave safe. Available in clear or black base.</p>
-<h2>Black Base Containers</h2>
-<ul>
-<li>Sizes: 500 ML, 650 ML, 750 ML, 1000 ML</li>
-</ul>
-<h2>Round Containers</h2>
-<ul>
-<li>Sizes: 12oz, 16oz, 24oz, 28oz, 32oz, 48oz (150 sets/box)</li>
-</ul>
-<h2>Rectangular Containers</h2>
-<ul>
-<li>Sizes: 16oz, 24oz, 28oz, 32oz, 38oz, 32oz (2 Compartment) (150 sets/box)</li>
-</ul>
+<body class="product-page">
+ <!-- Global Search -->
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
+  </div>
+  <header>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    <h1>Plastic Containers</h1>
+  </header>
+
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+  </div>
+
+  <div class="container">
+
+    <h2>Microwave Containers</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/microwave black base.png" alt="Microwave Black Base" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Microwave – Black Base</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 500ml, 650ml, 750ml, 1000ml</li>
+            <li>Quality: HD / Standard</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product">
+        <img src="product_images/microwave clear base.png" alt="Microwave Clear Base" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Microwave – Clear Base</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 500ml, 650ml, 750ml, 1000ml</li>
+            <li>Quality: HD / Standard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Black Base Containers</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/black rectangular container.png" alt="Black Rectangular" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Rectangular Containers</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 16oz, 24oz, 28oz, 32oz, 38oz</li>
+            <li>Special: 32oz (2 Compartment)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product">
+        <img src="product_images/black round container.png" alt="Black Round" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Round Containers</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 12oz, 16oz, 24oz, 28oz, 32oz, 48oz</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Salad Containers</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/Salad container 750ml.png" alt="Salad 750ml" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Salad Containers</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 250ml, 375ml, 500ml, 750ml, 1000ml, 1250ml, 2000ml</li>
+            <li>Material: Clear Plastic</li>
+            <li>Packaging: 200–500 pcs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Deli Pots</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/16oz deli pot.png" alt="Deli Pots" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Deli Pots</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 8oz, 10oz, 12oz, 16oz, 24oz, 30oz</li>
+            <li>Universal Lid</li>
+            <li>250 sets/box</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2>Sauce Cups</h2>
+    <div class="products">
+      <div class="product">
+        <img src="product_images/sauce cup 2oz hinged.png" alt="Hinged Lid" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Sauce Cups – Hinged Lid</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 1oz, 2oz, 4oz, 6oz</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product">
+        <img src="product_images/sauce cup 2oz separate.png" alt="Separate Lid" />
+        <h3 tabindex="0" role="button" aria-expanded="false">Sauce Cups – Separate Lid</h3>
+        <div class="product-specs">
+          <ul>
+            <li>Sizes: 2oz, 4oz</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html">← Back to Home</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleProduct(product) {
+      const isActive = product.classList.toggle('active');
+      const h3 = product.querySelector('h3');
+      h3.setAttribute('aria-expanded', isActive);
+    }
+
+    document.querySelectorAll('.product').forEach(product => {
+      const img = product.querySelector('img');
+      const h3 = product.querySelector('h3');
+
+      img.addEventListener('click', () => toggleProduct(product));
+      h3.addEventListener('click', () => toggleProduct(product));
+
+      h3.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleProduct(product);
+        }
+      });
+    });
+
+    function handleSearch(query) {
+      const q = query.toLowerCase();
+      document.querySelectorAll('.product').forEach(product => {
+        const text = product.innerText.toLowerCase();
+        product.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+ <script src="search.js"></script>
+  <script src="productIndex.js"></script>
+
 </body>
 </html>

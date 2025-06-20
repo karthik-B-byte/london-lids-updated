@@ -1,26 +1,276 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Napkins &amp; Rolls</title>
-<link href="styles.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Napkins & Rolls</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Container and layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #e4a342;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Products grid */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Individual product card */
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      padding: 16px;
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+      color: white;
+      user-select: none;
+    }
+
+    .product:hover {
+      background-color: #293b4a;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .product h3 {
+      text-align: center;
+      margin: 0 0 10px 0;
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      padding: 12px 0;
+      font-size: 1em;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .product h3:hover {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    /* Accordion specs */
+    .product-specs {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: #162029;
+      border-radius: 0 0 10px 10px;
+      padding: 0 12px;
+      color: white;
+    }
+
+    .product-specs ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .product.active .product-specs {
+      max-height: 500px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    /* Global search styles */
+    #global-search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #global-search {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    #search-results {
+      margin-top: 10px;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #0e141a;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e4a342;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer .back-button {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    footer .back-button:hover {
+      background-color: #c98d2f;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
-<body>
-<h1>Paper Napkins &amp; Centerfeed</h1>
-<p>Practical and hygienic paper solutions for food service.</p>
-<h2>Napkins</h2>
-<ul>
-<li>Single Ply Serviettes – Cost-effective and hygienic</li>
-</ul>
-<h2>Wipe-Up</h2>
-<ul>
-<li>Sizes: 40x40 (8-fold), 33x33 – Others on request</li>
-</ul>
-<h2>Centerfeed Rolls</h2>
-<ul>
-<li>Grades: Heavy-duty and economy</li>
-</ul>
+<body class="product-page">
+
+  <!-- Global Search -->
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    <h1>Napkins & Rolls</h1>
+  </header>
+
+  <main class="container">
+
+    <section>
+      <h2>Serviettes</h2>
+      <div class="products">
+        <div class="product">
+          <img src="product_images/napkin 40x40.png" alt="40x40 Napkin" />
+          <h3>Wipe-Up Serviettes</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Size: 40x40 (8-fold)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/napkin 33x33.png" alt="33x33 Napkin" />
+          <h3>Wipe-Up Serviettes</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Size: 33x33</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/single ply select.png" alt="Single Ply Serviettes" />
+          <h3>Select Single Ply Soft Serviettes</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Approx Size: 30x30 cm</li>
+              <li>Variants:
+                <ul>
+                  <li>30cm 1-ply</li>
+                  <li>33cm 1-ply &amp; 2-ply</li>
+                  <li>40cm 2-ply &amp; 3-ply</li>
+                  <li>Centerfeed rolls</li>
+                  <li>Hand towels, Toilet rolls</li>
+                  <li>Dispenser &amp; Dinner napkins</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Centerfeed Rolls</h2>
+      <div class="products">
+        <div class="product">
+          <img src="product_images/centerfeed heavy.png" alt="Heavy Duty Roll" />
+          <h3>Centerfeed Roll</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Type: Heavy-Duty</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/centerfeed economy.png" alt="Economy Roll" />
+          <h3>Centerfeed Roll</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Type: Economy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="index.html" class="back-button">← Back to Home</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Accordion toggle for specs on image or title click
+    document.querySelectorAll('.product').forEach(product => {
+      const img = product.querySelector('img');
+      const title = product.querySelector('h3');
+
+      function toggleSpecs() {
+        product.classList.toggle('active');
+      }
+
+      img.addEventListener('click', toggleSpecs);
+      title.addEventListener('click', toggleSpecs);
+    });
+  </script>
+
+  <script src="search.js"></script>
+  <script src="productIndex.js"></script>
 </body>
 </html>

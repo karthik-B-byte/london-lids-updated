@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Products - London Lids Ltd</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Container and layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #0e141a;
+      padding: 20px 0;
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+
+    header .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e4a342;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    header h1 {
+      margin: 0.2em 0 0.1em;
+      color: #e4a342;
+      font-weight: bold;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    header .logo {
+      max-height: 60px;
+      margin-bottom: 10px;
+    }
+
+    /* Global search styles */
+    #global-search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #global-search {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    #search-results {
+      margin-top: 10px;
+    }
+
+    /* Products grid */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    /* Individual product card */
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      padding: 16px;
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .product:hover {
+      background-color: #293b4a;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: block;
+    }
+
+    .product h3 {
+      margin: 0 0 10px 0;
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      padding: 12px 0;
+      font-size: 1.2em;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      width: 100%;
+    }
+
+    .product h3:hover {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    .product p {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer .back-button,
+    footer .contact-button {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin: 5px 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    footer .back-button:hover,
+    footer .contact-button:hover {
+      background-color: #c98d2f;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product {
+        width: 90%;
+      }
+    }
+
+    /* Focus styles for accessibility */
+    .product h3:focus,
+    .product img:focus,
+    .back-btn:focus,
+    footer .back-button:focus,
+    footer .contact-button:focus {
+      outline: 2px solid #e4a342;
+      outline-offset: 2px;
+      outline-style: solid;
+    }
+  </style>
+</head>
+<body class="product-page">
+  <!-- Global Search -->
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    <img src="logo.png" alt="London Lids Logo" class="logo" />
+    <h1>Our Products</h1>
+    <p>Browse the wide range of food packaging categories we offer.</p>
+  </header>
+
+  <!-- Main content -->
+  <main class="container">
+    <div class="products">
+      <div class="product">
+        <img src="product_images/aluminium-category.png" alt="Aluminium" tabindex="0" role="button" aria-label="View Aluminium products" />
+        <h3 tabindex="0" role="button" aria-label="View Aluminium products">Aluminium</h3>
+        <p>High-quality foil containers for all types of hot and cold food packaging.</p>
+      </div>
+
+      <div class="product">
+        <img src="product_images/plastic-category.png" alt="Plastic" tabindex="0" role="button" aria-label="View Plastic products" />
+        <h3 tabindex="0" role="button" aria-label="View Plastic products">Plastic</h3>
+        <p>Durable plastic containers, cutlery, and food-safe packaging solutions.</p>
+      </div>
+
+      <div class="product">
+        <img src="product_images/bagasse-category.png" alt="Bagasse" tabindex="0" role="button" aria-label="View Bagasse products" />
+        <h3 tabindex="0" role="button" aria-label="View Bagasse products">Bagasse</h3>
+        <p>Eco-friendly, compostable products made from sugarcane pulp.</p>
+      </div>
+
+      <div class="product">
+        <img src="product_images/paper-category.png" alt="Paper" tabindex="0" role="button" aria-label="View Paper & Bags products" />
+        <h3 tabindex="0" role="button" aria-label="View Paper & Bags products">Paper & Bags</h3>
+        <p>Paper cups, bags, and packaging for takeaway and delivery services.</p>
+      </div>
+
+      <div class="product">
+        <img src="product_images/napkin-category.png" alt="Napkins" tabindex="0" role="button" aria-label="View Napkins & Rolls products" />
+        <h3 tabindex="0" role="button" aria-label="View Napkins & Rolls products">Napkins & Rolls</h3>
+        <p>Soft, absorbent napkins and hygiene rolls in various sizes.</p>
+      </div>
+
+      <div class="product">
+        <img src="product_images/lids-category.png" alt="Lids" tabindex="0" role="button" aria-label="View Lids products" />
+        <h3 tabindex="0" role="button" aria-label="View Lids products">Lids</h3>
+        <p>Secure-fitting lids for containers of all shapes and materials.</p>
+      </div>
+
+      <div class="product">
+        <img src="product_images/foil-category.png" alt="Foil & Cling Film" tabindex="0" role="button" aria-label="View Foil & Cling Film products" />
+        <h3 tabindex="0" role="button" aria-label="View Foil & Cling Film products">Foil & Cling Film</h3>
+        <p>Reliable wrapping solutions to preserve freshness and flavor.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="index.html" class="back-button">← Back to Home</a>
+    <a href="contact.html" class="contact-button">Contact Us</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Make product images and titles clickable, navigating to relevant pages
+    // Using event delegation for maintainability
+    document.querySelector('.products').addEventListener('click', (e) => {
+      let target = e.target;
+
+      // If clicked element is image or h3 with role=button
+      if ((target.tagName === 'IMG' || target.tagName === 'H3') && target.getAttribute('role') === 'button') {
+        const productName = target.textContent || target.alt || '';
+        // Map product names to URLs - adjust URLs as needed
+        const links = {
+          'Aluminium': 'aluminium.html',
+          'Plastic': 'plastic.html',
+          'Bagasse': 'bagasse.html',
+          'Paper & Bags': 'paper.html',
+          'Napkins & Rolls': 'napkins.html',
+          'Lids': 'lids.html',
+          'Foil & Cling Film': 'foil.html'
+        };
+        // Use trimmed name for matching
+        const url = links[productName.trim()];
+        if (url) {
+          window.location.href = url;
+        }
+      }
+    });
+
+    // Keyboard support for Enter and Space keys on product img/h3
+    document.querySelectorAll('.product img, .product h3').forEach(elem => {
+      elem.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          elem.click();
+        }
+      });
+    });
+  </script>
+
+  <script src="search.js"></script>
+  <script src="productIndex.js"></script>
+</body>
+</html>

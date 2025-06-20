@@ -1,31 +1,316 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bagasse Products</title>
-<link href="styles.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bagasse Products</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Container and layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #e4a342;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Products grid */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Individual product card */
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      padding: 16px;
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .product:hover {
+      background-color: #293b4a;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .product h3 {
+      text-align: center;
+      margin: 0 0 10px 0;
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      padding: 12px 0;
+      font-size: 1em;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .product h3:hover {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    /* Accordion specs */
+    .product-specs {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: #162029;
+      border-radius: 0 0 10px 10px;
+      padding: 0 12px;
+      color: white;
+    }
+
+    .product-specs ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .product.active .product-specs {
+      max-height: 500px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    /* Global search */
+    #global-search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #global-search {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    #search-results {
+      margin-top: 10px;
+    }
+
+    /* Header and footer */
+    header {
+      background-color: #0e141a;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e4a342;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer .back-button {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    footer .back-button:hover {
+      background-color: #c98d2f;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
-<body>
-<h1>Bagasse Products</h1>
-<p>Eco-friendly, biodegradable and compostable meal boxes, plates, and clamshell containers.</p>
-<h2>Plates &amp; Bowls</h2>
-<ul>
-<li>8oz Bowl (240ml) – 1500 pcs</li>
-<li>9" Round Plate – 500 pcs</li>
-<li>10" Round Plate – 500 pcs</li>
-<li>12oz Plate – 500 pcs</li>
-<li>12" 4-Compartment Plate – 500 pcs</li>
-<li>6 &amp; 7 Compartment Round Plates – 200/250 pcs</li>
-</ul>
-<h2>Clamshells</h2>
-<ul>
-<li>6"x6", 7"x5", 9"x6" – 200 pcs</li>
-</ul>
-<h2>Straws</h2>
-<ul>
-<li>6mm, 8mm, 10mm – 5000 pcs each</li>
-</ul>
+<body class="product-page">
+
+  <!-- Global Search -->
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    <h1>Bagasse Products</h1>
+  </header>
+
+  <!-- Main Product Sections -->
+  <main class="container">
+
+    <section>
+      <h2>Bowls</h2>
+      <div class="products">
+        <div class="product">
+          <img src="product_images/8oz bowl.png" alt="Bagasse Bowl" />
+          <h3>Bagasse Bowl</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Size: 8oz (240ml)</li>
+              <li>Pack Size: 1500 pcs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Plates</h2>
+      <div class="products">
+        <!-- Repeat for each product -->
+        <div class="product">
+          <img src="product_images/9in plate.png" alt="9 inch Plate" />
+          <h3>9" Round Plate</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 500 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/10in plate.png" alt="10 inch Plate" />
+          <h3>10" Round Plate</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 500 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/12oz plate.png" alt="12oz Plate" />
+          <h3>12oz Plate</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 500 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/12in 4comp plate.png" alt="4 Compartment Plate" />
+          <h3>12" 4-Compartment Plate</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 500 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/7comp plate.png" alt="7 Compartment Plate" />
+          <h3>7-Compartment Round Plate</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 200 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/6comp plate.png" alt="6 Compartment Plate" />
+          <h3>6-Compartment Round Plate</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 250 pcs</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Clamshell Boxes</h2>
+      <div class="products">
+        <div class="product">
+          <img src="product_images/6x6 clamshell.png" alt="6x6 Box" />
+          <h3>6" x 6" Clamshell</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 200 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/7x5 clamshell.png" alt="7x5 Box" />
+          <h3>7" x 5" Clamshell</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 200 pcs</li></ul>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="product_images/9x6 clamshell.png" alt="9x6 Box" />
+          <h3>9" x 6" Clamshell</h3>
+          <div class="product-specs">
+            <ul><li>Pack Size: 200 pcs</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Straws</h2>
+      <div class="products">
+        <div class="product">
+          <img src="product_images/straws.png" alt="Straws" />
+          <h3>Bagasse Straws</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Sizes: 6mm, 8mm, 10mm</li>
+              <li>Pack Size: 5000 pcs each</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="index.html" class="back-button">← Back to Home</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Accordion functionality
+    document.querySelectorAll('.product').forEach(product => {
+      const img = product.querySelector('img');
+      const title = product.querySelector('h3');
+
+      function toggleSpecs() {
+        product.classList.toggle('active');
+      }
+
+      img.addEventListener('click', toggleSpecs);
+      title.addEventListener('click', toggleSpecs);
+    });
+  </script>
+
+  <script src="search.js"></script>
+  <script src="productIndex.js"></script>
 </body>
 </html>

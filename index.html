@@ -2,73 +2,473 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>London Lids Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>London Lids Ltd</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    .logo-center {
+    body.home-page {
+      background-color: white;
+      color: #162029;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Global Search */
+    #global-search-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    #global-search {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      font-family: inherit;
+      box-sizing: border-box;
+      background-color: #1f2c38;
+      color: white;
+      outline-offset: 2px;
+      outline-color: #e4a342;
+    }
+
+    #global-search::placeholder {
+      color: #bbb;
+    }
+
+    #search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #1f2c38;
+      border-radius: 0 0 8px 8px;
+      max-height: 250px;
+      overflow-y: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      color: white;
+      display: none; /* Controlled by search.js */
+      z-index: 1001;
+    }
+
+    /* Hamburger Menu Icon */
+    .menu-toggle {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 1100;
       display: flex;
-      justify-content: center;
-      margin-top: 20px;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .logo-center img {
-      height: 80px;
+    .menu-toggle div {
+      height: 3px;
+      background-color: #e4a342;
+      border-radius: 2px;
+      transition: all 0.3s ease;
     }
-    .title-center {
+
+    /* Sidebar Navigation */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100vh;
+      background-color: #1f2c38;
+      padding-top: 80px;
+      box-sizing: border-box;
+      transition: left 0.3s ease;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+    }
+    #sidebar.active {
+      left: 0;
+    }
+    #sidebar a {
+      color: #e4a342;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #sidebar a:hover,
+    #sidebar a:focus {
+      background-color: #c98d2f;
+      color: white;
+      outline: none;
+    }
+    #sidebar a.special-products {
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      margin: 0 15px 10px 15px;
+    }
+    #sidebar a.special-products:hover,
+    #sidebar a.special-products:focus {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    /* Overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(22, 32, 41, 0.8);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1040;
+    }
+    #overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Header / Hero Section */
+    header {
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    }
+    .hero-section.slider {
+      position: relative;
+      height: 380px;
+    }
+    .slide {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      border-radius: 12px;
+      z-index: 1;
+    }
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
       color: #e4a342;
-      margin: 20px 0 10px 0;
+      z-index: 3;
+      padding: 0 20px;
+      user-select: none;
     }
-    #searchBar {
-      display: block;
-      margin: 0 auto 30px auto;
-      padding: 10px;
-      font-size: 16px;
-      width: 90%;
-      max-width: 500px;
+    .hero-content .logo {
+      max-width: 160px;
+      margin-bottom: 15px;
+      filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.8));
     }
-    .link-list {
-      max-width: 500px;
-      margin: auto;
+    .hero-content h1 {
+      font-size: 3rem;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
     }
-    .link-list a {
-      display: block;
-      color: white;
-      margin: 10px 0;
+    .hero-content h2 {
+      font-size: 1.5rem;
+      margin: 8px 0;
+      font-weight: 600;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+    .hero-content h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* Dots */
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 4;
+      user-select: none;
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      background-color: rgba(228, 163, 66, 0.6);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .dot.active,
+    .dot:hover,
+    .dot:focus {
+      background-color: #e4a342;
+      outline: none;
+    }
+
+    /* Main Product Section */
+    main.container {
+      max-width: 1200px;
+      margin: 0 auto 50px auto;
+      padding: 0 20px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 25px;
+    }
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
       text-align: center;
-      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
     }
-    .link-list a:hover {
-      text-decoration: underline;
+    .product:hover,
+    .product:focus-within {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(228,163,66,0.7);
+    }
+    .product a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 15px 10px 25px;
+    }
+    .product img {
+      max-width: 100%;
+      border-radius: 10px 10px 0 0;
+      user-select: none;
+      pointer-events: none;
+    }
+    .product h3 {
+      margin: 15px 0 10px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #e4a342;
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer .back-button {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    footer .back-button:hover {
+      background-color: #c98d2f;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-content h2 {
+        font-size: 1.2rem;
+      }
+      .hero-content h3 {
+        font-size: 1rem;
+      }
+      .products {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="logo-center">
-    <img src="logo.png" alt="London Lids Logo" />
-  </div>
-  <h1 class="title-center">Explore Our Product Categories</h1>
-  <input type="text" id="searchBar" onkeyup="searchCategories()" placeholder="Search categories..." />
+<body class="home-page">
 
-  <div class="link-list" id="categoryLinks">
-    <a href="aluminium.html">Aluminium Foil Containers</a>
-    <a href="plastic.html">Plastic Containers</a>
-    <a href="bagasse.html">Bagasse Products</a>
+ <!-- Global Search -->
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
   </div>
 
+
+  <!-- ☰ Hamburger Icon -->
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="sidebar">
+    <div></div>
+    <div></div>
+    <div></div>
+  </button>
+
+  <!-- Sidebar Navigation -->
+  <nav id="sidebar" role="navigation" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="products.html" class="special-products">Products</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="Product Catalog Presentation RD.pdf" download>Download Catalog</a>
+  </nav>
+
+  <!-- Overlay for closing sidebar -->
+  <div id="overlay" onclick="closeMenu()" tabindex="-1"></div>
+
+  <!-- Header Section -->
+  <header>
+    <div class="hero-section slider" role="region" aria-label="Featured products slideshow">
+      <div class="slide active" style="background-image:url('product_images/background1.png')" aria-hidden="false"></div>
+      <div class="slide" style="background-image:url('product_images/background2.png')" aria-hidden="true"></div>
+      <div class="slide" style="background-image:url('product_images/background3.png')" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <img src="logo.png" alt="London Lids Logo" class="logo" />
+        <h1>London Lids Ltd</h1>
+        <h2>Manufacturers & Suppliers of All Catering Disposables</h2>
+        <h3>A Trusted Family Company In Food Packaging For Over 20 Years</h3>
+      </div>
+
+      <div class="dots" role="tablist" aria-label="Select slide">
+        <button class="dot active" onclick="setSlide(0)" role="tab" aria-selected="true" aria-controls="slide1" tabindex="0"></button>
+        <button class="dot" onclick="setSlide(1)" role="tab" aria-selected="false" aria-controls="slide2" tabindex="-1"></button>
+        <button class="dot" onclick="setSlide(2)" role="tab" aria-selected="false" aria-controls="slide3" tabindex="-1"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Product Section -->
+  <main class="container" role="main">
+    <div id="product-list" class="products">
+      <div class="product">
+        <a href="aluminium.html">
+          <img src="product_images/aluminium-category.png" alt="Aluminium" />
+          <h3>Aluminium</h3>
+        </a>
+      </div>
+      <div class="product">
+        <a href="plastic.html">
+          <img src="product_images/plastic-category.png" alt="Plastic" />
+          <h3>Plastic</h3>
+        </a>
+      </div>
+      <div class="product">
+        <a href="bagasse.html">
+          <img src="product_images/bagasse-category.png" alt="Bagasse" />
+          <h3>Bagasse</h3>
+        </a>
+      </div>
+      <div class="product">
+        <a href="paper.html">
+          <img src="product_images/paper-category.png" alt="Paper & Bags" />
+          <h3>Paper & Bags</h3>
+        </a>
+      </div>
+      <div class="product">
+        <a href="napkins.html">
+          <img src="product_images/napkin-category.png" alt="Napkins & Rolls" />
+          <h3>Napkins & Rolls</h3>
+        </a>
+      </div>
+      <div class="product">
+        <a href="lids.html">
+          <img src="product_images/lids-category.png" alt="Lids" />
+          <h3>Lids</h3>
+        </a>
+      </div>
+      <div class="product">
+        <a href="foil.html">
+          <img src="product_images/foil-category.png" alt="Foil & Cling Film" />
+          <h3>Foil & Cling Film</h3>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p><a href="contact.html">Contact Us</a></p>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
   <script>
-    function searchCategories() {
-      const input = document.getElementById('searchBar').value.toLowerCase();
-      const links = document.querySelectorAll('#categoryLinks a');
-      links.forEach(link => {
-        const text = link.textContent.toLowerCase();
-        link.style.display = text.includes(input) ? 'block' : 'none';
-      });
+    // Sidebar menu toggle
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const isOpen = sidebar.classList.toggle('active');
+      overlay.classList.toggle('active', isOpen);
+      // Update aria-expanded on menu toggle button
+      const menuButton = document.querySelector('.menu-toggle');
+      menuButton.setAttribute('aria-expanded', isOpen);
+    }
+    function closeMenu() {
+      document.getElementById('sidebar').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+      document.querySelector('.menu-toggle').setAttribute('aria-expanded', false);
+    }
+
+    // Hero slider
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+    function goToSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      slides[currentSlide].setAttribute('aria-hidden', 'true');
+      dots[currentSlide].classList.remove('active');
+      dots[currentSlide].setAttribute('aria-selected', 'false');
+      dots[currentSlide].setAttribute('tabindex', '-1');
+
+      currentSlide = (n + slides.length) % slides.length;
+
+      slides[currentSlide].classList.add('active');
+      slides[currentSlide].setAttribute('aria-hidden', 'false');
+      dots[currentSlide].classList.add('active');
+      dots[currentSlide].setAttribute('aria-selected', 'true');
+      dots[currentSlide].setAttribute('tabindex', '0');
+      dots[currentSlide].focus();
+    }
+    function setSlide(n) {
+      clearInterval(slideInterval);
+      goToSlide(n);
+      slideInterval = setInterval(nextSlide, 5000);
     }
   </script>
+  <script src="search.js"></script>
+  <script src="productIndex.js"></script>
 
-  <footer>
-    &copy; 2025 London Lids Limited. All rights reserved.
-  </footer>
 </body>
 </html>

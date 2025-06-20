@@ -1,61 +1,349 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Aluminium Foil Containers</title>
-<link href="styles.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aluminium Foil Containers</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Container and layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #e4a342;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Products grid */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Individual product card */
+    .product {
+      background-color: #1f2c38;
+      border-radius: 10px;
+      padding: 16px;
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .product:hover {
+      background-color: #293b4a;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .product h3 {
+      text-align: center;
+      margin: 0 0 10px 0;
+      background-color: #e4a342;
+      color: #162029;
+      border-radius: 6px;
+      padding: 12px 0;
+      font-size: 1em;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .product h3:hover {
+      background-color: #c98d2f;
+      color: white;
+    }
+
+    /* Accordion specs */
+    .product-specs {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: #162029;
+      border-radius: 0 0 10px 10px;
+      padding: 0 12px;
+      color: white;
+    }
+
+    .product-specs ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .product.active .product-specs {
+      max-height: 500px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    /* Global search styles */
+    #global-search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #global-search {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    #search-results {
+      margin-top: 10px;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #0e141a;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #e4a342;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0e141a;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer .back-button {
+      background: #e4a342;
+      color: #162029;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    footer .back-button:hover {
+      background-color: #c98d2f;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
-<body>
-<h1>Aluminium Foil Containers</h1>
-<p>Food-safe and versatile, these containers are ideal for takeaways and food delivery. Designed to safely hold both hot and cold dishes.</p>
-<h2>Silver Brand</h2>
-<ul>
-<li><strong>NO 2</strong><br/>
-      Quality: Standard<br/>
-      Material: Aluminium<br/>
-      Dimensions: 5"x4”x2”<br/>
-      Pack Size: 1000</li>
-<li><strong>NO 6A</strong><br/>
-      Quality: Standard<br/>
-      Material: Aluminium<br/>
-      Pack Size: [Specify if available]</li>
-</ul>
-<h2>Gold Brand</h2>
-<ul>
-<li><strong>NO 2</strong><br/>
-      Quality: Heavy<br/>
-      Material: Aluminium<br/>
-      Dimensions: 5x4x2"<br/>
-      Pack Size: 1000</li>
-<li><strong>NO 1</strong><br/>
-      Quality: Heavy<br/>
-      Material: Aluminium<br/>
-      Dimensions: 5x4x1.75"<br/>
-      Pack Size: 1000</li>
-<li><strong>NO 6</strong><br/>
-      Quality: Heavy<br/>
-      Material: Aluminium<br/>
-      Dimensions: 4.7x8.5x2.5"<br/>
-      Pack Size: 500</li>
-<li><strong>NO 12</strong><br/>
-      Quality: Heavy<br/>
-      Material: Aluminium<br/>
-      Dimensions: 7" ROUNDx1.75<br/>
-      Pack Size: 400</li>
-<li><strong>9x9x1.5</strong><br/>
-      Dimensions: 9x9x1.5"<br/>
-      Pack Size: 200</li>
-<li><strong>9x9x2</strong><br/>
-      Dimensions: 9x9x2"<br/>
-      Pack Size: 200</li>
-<li><strong>Half Gastro</strong><br/>
-      Dimensions: 325x263; Height-66mm<br/>
-      Pack Size: 100</li>
-<li><strong>Full Gastro</strong><br/>
-      Dimensions: 525x325; Height-79mm<br/>
-      Pack Size: 200</li>
-</ul>
+<body class="product-page">
+
+
+  <!-- Global Search -->
+  <div id="global-search-container">
+    <input type="text" id="global-search" placeholder="Search products..." oninput="handleSearch(this.value)" />
+    <div id="search-results"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+    <h1>Aluminium Foil Containers</h1>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Silver Brand</h2>
+      <div class="products">
+        <article class="product">
+          <img src="product_images/No.2 silver.png" alt="NO 2 Silver" />
+          <h3>NO 2</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Standard</li>
+              <li>Dimensions: 5" x 4" x 2"</li>
+              <li>Pack Size: 1000</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/No 6A silver brand.png" alt="NO 6A Silver" />
+          <h3>NO 6A</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Standard</li>
+              <li>Dimensions: 7" x 4" x 2"</li>
+              <li>Pack Size: 500</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Gold Brand</h2>
+      <div class="products">
+        <article class="product">
+          <img src="product_images/No 1.png" alt="NO 1 Gold" />
+          <h3>NO 1</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 5" x 4" x 1.75"</li>
+              <li>Pack Size: 1000</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/No 2.png" alt="NO 2 Gold" />
+          <h3>NO 2</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 5" x 4" x 2"</li>
+              <li>Pack Size: 1000</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/No 6.png" alt="NO 6 Gold" />
+          <h3>NO 6</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 4.7" x 8.5" x 2.5"</li>
+              <li>Pack Size: 500</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/No 6A gold brand.png" alt="NO 6A Gold" />
+          <h3>NO 6A</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 7" x 4" x 2"</li>
+              <li>Pack Size: 500</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/No 12.png" alt="NO 12 Gold" />
+          <h3>NO 12</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 7" Round x 1.75"</li>
+              <li>Pack Size: 400</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/9x9 shallow.png" alt='9×9×1.5" Shallow Tray' />
+          <h3>9×9×1.5" Shallow Tray</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 9" x 9" x 1.5"</li>
+              <li>Pack Size: 200</li>
+              <li>Notes: Shallow tray</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/9x9 Deep.png" alt='9×9×2" Deep Tray' />
+          <h3>9×9×2" Deep Tray</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 9" x 9" x 2"</li>
+              <li>Pack Size: 200</li>
+              <li>Notes: Deep tray</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/Half Gastro gold.png" alt="Half Gastro" />
+          <h3>Half Gastro</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 325 x 263 x 66 mm</li>
+              <li>Pack Size: 100</li>
+              <li>Notes: Rectangular</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="product_images/Full Gastro gold.png" alt="Full Gastro" />
+          <h3>Full Gastro</h3>
+          <div class="product-specs">
+            <ul>
+              <li>Quality: Heavy</li>
+              <li>Dimensions: 525 x 325 x 79 mm</li>
+              <li>Pack Size: 200</li>
+              <li>Notes: Rectangular – Large capacity</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="index.html" class="back-button">← Back to Home</a>
+    <p>&copy; 2025 London Lids Ltd. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Accordion toggle for specs on image or title click
+    document.querySelectorAll('.product').forEach(product => {
+      const img = product.querySelector('img');
+      const title = product.querySelector('h3');
+
+      function toggleSpecs() {
+        product.classList.toggle('active');
+      }
+
+      img.addEventListener('click', toggleSpecs);
+      title.addEventListener('click', toggleSpecs);
+    });
+  </script>
+
+  <script src="search.js"></script>
+  <script src="productIndex.js"></script>
 </body>
 </html>

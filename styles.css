@@ -1,54 +1,366 @@
-
+/* === Global Styles === */ 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #162029;
-  color: white;
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
 }
-header {
-  background-color: #0e151c;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-header img {
-  height: 50px;
-}
-nav a {
-  margin: 0 15px;
-  color: #e4a342;
-  text-decoration: none;
-  font-weight: bold;
-}
-.container {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
-}
-h1, h2 {
-  color: #e4a342;
-}
-.product {
-  background-color: #1e2b39;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-ul {
-  padding-left: 20px;
-}
-footer {
-  text-align: center;
-  padding: 20px;
-  color: white;
-  background-color: #0e151c;
-}
+
 a {
   color: #e4a342;
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
+}
+
+/* === Header Section === */
+header {
+  text-align: center;
+  background-color: #0e141a;
+  position: relative;
+  color: #e4a342;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background-color: #e4a342;
+  margin: 5px 0;
+}
+
+/* Sidebar Navigation */
+nav {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #1a2733;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 9;
+}
+nav a {
+  padding: 12px 20px;
+  font-size: 18px;
+  color: white;
+  display: block;
+}
+nav a[href*="products"] {
+  color: #e4a342;
+}
+nav a:hover {
+  background-color: #e4a342;
+  color: #162029;
+}
+nav.active {
+  left: 0;
+}
+
+/* Sidebar Overlay */
+#overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.3);
+  display: none;
+  z-index: 8;
+}
+#overlay.active {
+  display: block;
+}
+
+/* === Hero Section === */
+.hero-section.slider {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+.hero-section .slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+.hero-section .slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+.hero-section .hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+.hero-section .logo {
+  width: 150px;
+  margin-bottom: 10px;
+}
+.hero-section h1 {
+  font-size: 2em;
+  margin: 10px 0 5px;
+  color: #e4a342;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.hero-section h2 {
+  font-size: 1.5em;
+  margin: 5px 0;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.hero-section h3 {
+  font-size: 1em;
+  margin: 5px 0 15px;
+  color: #e4a342;
+  text-shadow: none;
+}
+
+/* Slider Dots */
+.dots {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+}
+.dots .dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.dots .dot.active {
+  background-color: #e4a342;
+}
+
+/* === Main Content === */
+.container {
+  padding: 30px 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  justify-items: center;
+}
+
+.product {
+  background-color: white;
+  border-radius: 10px;
+  padding: 16px;
+  width: 100%;
+  max-width: 280px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  color: black;
+}
+.product:hover {
+  transform: translateY(-5px);
+}
+.product img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  object-fit: contain;
+}
+.product h3 {
+  text-align: center;
+  width: 100%;
+  padding: 12px 0;
+  margin: 0;
+  background-color: #162029;
+  color: #e4a342;
+  border-radius: 6px;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border-top: 4px solid #e4a342;
+}
+.product h3:hover {
+  background-color: #c98d2f;
+  color: black;
+}
+
+/* === Footer === */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #0e141a;
+  color: white;
+  margin-top: 40px;
+}
+footer a {
+  display: inline-block;
+  background-color: #e4a342;
+  color: #162029;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+footer a:hover {
+  background-color: #c98d2f;
+  color: white;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .product {
+    max-width: none;
+  }
+}
+@media (max-width: 480px) {
+  .products {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* === Special Effects === */
+.special-products {
+  position: relative;
+  color: #e4a342;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* === Back to Home Button === */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #162029;
+  color: black;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  font-family: Arial, sans-serif;
+  z-index: 20;
+  border-top: 4px solid #e4a342;
+}
+.back-btn:hover {
+  background-color: #c98d2f;
+  color: black;
+  cursor: pointer;
+}
+
+/* === Global Search Styles === */
+
+#global-search-container {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  width: 300px;
+  z-index: 100;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  padding: 5px 10px; 
+
+ /* NEW - position context for dropdown */
+  box-sizing: border-box;
+}
+
+#global-search::placeholder {
+  color: #e4a342;
+  opacity: 0.7;
+}
+#global-search:focus {
+  border-color: #e4a342;
+  box-shadow: 0 0 5px #e4a342;
+}
+
+#global-search {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px 8px 0 0; /* only top-left and top-right rounded */
+  outline: none;
+  box-sizing: border-box;
+}
+
+#search-results {
+  position: absolute;
+  top: 100%;  /* position below input */
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-top: none; /* no double border */
+  border-radius: 0 0 8px 8px; /* bottom corners rounded */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+}
+#search-results a {
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: #000;
+}
+#search-results a:hover {
+  background-color: #eee;
+}
+
+/* === Highlight Effect === */
+.product.highlight {
+  box-shadow: 0 0 15px 5px #e4a342;
+  transition: box-shadow 0.3s ease;
 }
